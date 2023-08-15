@@ -1,5 +1,9 @@
 import os
 
+# Ensure that the cached_datasets and latest_run folders exist before running
+# Verify that there aren't spelling mistakes in the batch file paths after .sh file creation
+
+
 results_dir = "latest_run"
 curbatch = []
 for seed in range(1):

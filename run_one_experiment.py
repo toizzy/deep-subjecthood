@@ -9,11 +9,13 @@ import pandas as pd
 import pickle
 import sys
 import torch
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel #Need to verify correct version installed in env to ensure it runs on your OS
+# For example, on Mac M1 arch, it worked better to have transformers 2 to avoid an attribute error during training where a
+# a string is required as opposed to a tuple.
 
 from utils import train_classifier, eval_classifier, eval_classifier_ood
 import data
-import reporter
+import reporter #this can give errors, may need to use alternative reporting methods
 
 # The size to cap the training data. Size is measured in cased nouns.
 # We chose the number of cased nouns in Basque as our limit.
@@ -48,6 +50,7 @@ def run_experiment(args):
         classifier_paths = [path + "_average" for path in classifier_paths]
 
     # Set the size of our training set to the number of Basque data points, depending on the type of experiment.
+    # Can remove parts of this function to train classifiers on unbalanced data anyway
     if args.only_ao:
         if args.balance:
             training_data_limit = BASQUE_AO_CASED_NOUNS_BALANCED 
