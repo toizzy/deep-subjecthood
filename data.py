@@ -141,6 +141,7 @@ class CaseLayerDataset(data.Dataset):
     def get_label_dict(self, old_labeldict):
       # Make a labeldict of all of the labels in this dataset, keeping the same 
       # name fo
+      ## Unsure what the above unfinished comment would be
       labelset = sorted(list(set(self.role_labels)))
       if old_labeldict is None:
           curr_label = 0
@@ -171,7 +172,7 @@ class CaseLayerDataset(data.Dataset):
             out_word_forms.append(word_forms_list[sentence_num][word_num])
             out_animacy_labels.append(animacy_labels[sentence_num][word_num])
             bert_start_index = orig_to_bert_map[sentence_num][word_num]
-            bert_end_index = orig_to_bert_map[sentence_num][word_num + 1]
+            bert_end_index = orig_to_bert_map[sentence_num][word_num + 1] #May need to remove the +1 in order to avoid an error
             bert_sentence = bert_outputs[sentence_num][self.layer_num].squeeze()
             if pool_method == "first":
                 train.append(bert_sentence[bert_start_index])
